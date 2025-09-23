@@ -1,27 +1,68 @@
 {
   "name": "@electron-devkit/window-manager",
-  "version": "0.0.0",
-  "type": "module",
-  "main": "dist/main.cjs",
+  "version": "0.1.0",
+  "description": "Advanced window and view management for Electron applications with multi-window support and drag/drop functionality",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
   "scripts": {
-    "dev": "electron .",
-    "build": "tsup",
-    "test": "playwright test",
-    "lint": "echo 'Add lint script here'"
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "lint": "eslint src --ext .ts",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "clean": "rimraf dist",
+    "prepublishOnly": "pnpm run clean && pnpm run build"
   },
+  "keywords": [
+    "electron",
+    "window-manager",
+    "browserview",
+    "multi-window",
+    "drag-drop",
+    "tabs",
+    "desktop"
+  ],
+  "author": "Magnus Trent",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/magnus-trent/electron-devkit.git"
+  },
+  "bugs": {
+    "url": "https://github.com/magnus-trent/electron-devkit/issues"
+  },
+  "homepage": "https://github.com/magnus-trent/electron-devkit#readme",
   "peerDependencies": {
-    "@electron-devkit/core": "*",
-    "electron": "^29.4.6"
-  },
-  "devDependencies": {
-    "@playwright/test": "^1.46.1",
-    "@types/node": "^22.5.2",
-    "electron": "^29.4.6",
-    "tsup": "^8.2.4",
-    "typescript": "^5.5.4"
+    "electron": ">=29.0.0"
   },
   "dependencies": {
-    "es-toolkit": "^1.24.0",
-    "uuid": "^11.0.0-0"
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.8.4",
+    "@types/uuid": "^9.0.5",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.57.0",
+    "jest": "^29.0.0",
+    "prettier": "^3.2.5",
+    "rimraf": "^5.0.5",
+    "typescript": "^5.4.5"
+  },
+  "files": [
+    "dist/**/*",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=20"
   }
 }
